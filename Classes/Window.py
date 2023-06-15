@@ -28,7 +28,6 @@ class Window:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
-                    break
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
                         self.click(event.pos)

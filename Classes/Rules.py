@@ -8,7 +8,7 @@ class Rules(Window):
     def __init__(self, last_window):
         self.height = 450
         self.width = 450
-        super().__init__(self.height, self.width)
+        super().__init__(self.width, self.height)
         self.last_window = last_window
         self.rules = ['Вы - охранник, мимо которого хотят', 'пробежать несколько опасных людей.',
                       'Не допустите этого!', 'Печатайте слова, появляющиеся в верху экрана.',
