@@ -20,3 +20,30 @@ class Window:
         for btn in self.buttons:
             if btn.check_clicked(mouse_pos):
                 btn.click()
+
+    def run(self):
+        pygame.init()
+        run = True
+        while run:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    run = False
+                    break
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        self.click(event.pos)
+                if event.type == pygame.KEYDOWN:
+                    self.keydown(event)
+            self.screen.fill((0, 0, 0))
+            if self.background:
+                self.screen.blit(self.background, (0, 0))
+            self.buttons.draw(self.screen)
+            self.sprite_move()
+            pygame.display.flip()
+        pygame.quit()
+
+    def keydown(self, event):
+        pass
+
+    def sprite_move(self):
+        pass

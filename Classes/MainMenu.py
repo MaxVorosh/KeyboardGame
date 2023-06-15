@@ -1,6 +1,7 @@
 import sys
 from Classes.Window import Window
 from Classes.Button import Button
+from Classes.Rules import Rules
 import pygame
 
 
@@ -23,24 +24,7 @@ class MainMenu(Window):
         sys.exit()
 
     def open_rules(self):
-        pass
+        self.rules = Rules(self)
 
     def open_levels(self):
         pass
-
-    def run(self):
-        pygame.init()
-        run = True
-        while run:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    run = False
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if event.button == 1:
-                        self.click(event.pos)
-            self.screen.fill((0, 0, 0))
-            if self.background:
-                self.screen.blit(self.background, (0, 0))
-            self.buttons.draw(self.screen)
-            pygame.display.flip()
-        pygame.quit()
