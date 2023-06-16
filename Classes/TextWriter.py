@@ -2,7 +2,7 @@ import pygame
 
 
 class TextWriter:
-    def writeText(self, screen, text, color):
+    def write_text(self, screen, text, color):
         background = pygame.transform.scale(pygame.image.load("data/img/background.png"),
                                             (screen.get_width(), screen.get_height()))
         screen.blit(background, (0, 0))

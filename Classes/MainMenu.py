@@ -2,7 +2,7 @@ import sys
 from Classes.Window import Window
 from Classes.Button import Button
 from Classes.Rules import Rules
-from Classes.Levels import Levels
+from Classes.LevelsMenu import LevelsMenu
 import pygame
 
 
@@ -28,4 +28,4 @@ class MainMenu(Window):
         self.rules_window = Rules(self)
 
     def open_levels(self):
-        self.levels_window = Levels(self)
+        self.levels_window = LevelsMenu(self)

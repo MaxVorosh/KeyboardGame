@@ -1,8 +1,9 @@
 from Classes.Window import Window
 from Classes.Button import Button
+from Classes.Level import Level
 
 
-class Levels(Window):
+class LevelsMenu(Window):
     def __init__(self, last_window):
         self.height = 450
         self.width = 450
@@ -23,13 +24,13 @@ class Levels(Window):
         self.last_window.run()
 
     def maths(self):
-        pass
+        self.level = Level("Maths")
 
     def east(self):
-        pass
+        self.level = Level("East")
 
     def maksim(self):
-        pass
+        self.level = Level("Maksim")
 
     def changes(self):
-        pass
+        self.level = Level("Changes")

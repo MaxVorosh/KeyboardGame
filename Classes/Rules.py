@@ -27,5 +27,5 @@ class Rules(Window):
 
     def sprite_move(self):
         text_writer = TextWriter()
-        text_writer.writeText(self.screen, self.rules, pygame.Color("black"))
+        text_writer.write_text(self.screen, self.rules, pygame.Color("black"))
         self.buttons.draw(self.screen)
