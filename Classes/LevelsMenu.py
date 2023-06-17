@@ -24,13 +24,13 @@ class LevelsMenu(Window):
         self.last_window.run()
 
     def maths(self):
-        self.level = Level("Maths")
+        self.level = Level("Maths", self)
 
     def east(self):
-        self.level = Level("East")
+        self.level = Level("East", self)
 
     def maksim(self):
-        self.level = Level("Maksim")
+        self.level = Level("Maksim", self)
 
     def changes(self):
-        self.level = Level("Changes")
+        self.level = Level("Changes", self)

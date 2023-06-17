@@ -1,29 +1,33 @@
-import sys
 import pygame
 from Classes.Window import Window
 from Classes.TextWriter import TextWriter
 from Classes.Prisoner import Prisoner
+from Classes.Congratulation import Congratulation
 
 
 class Level(Window):
-    def __init__(self, name):
+    def __init__(self, name, menu):
         self.width = 450
         self.height = 450
         super().__init__(self.width, self.height)
         self.name = name
         self.load_text(name)
-        self.line = 0
-        self.index = 0
         self.timer = 27
-        pygame.time.set_timer(self.timer, 5000)
-        self.prisoners = pygame.sprite.Group()
-        self.prisoners_count = 0
+        self.menu = menu
+        self.reset_level()
+        self.reset_timer()
         self.load()
         self.run()
 
+    def reset_level(self):
+        self.line = 0
+        self.index = 0
+        self.prisoners = pygame.sprite.Group()
+        self.prisoners_count = 0
+        self.add_prisoner()
+
     def load(self):
         self.set_background("data/img/background.png")
-        self.add_prisoner()
 
     def load_text(self, name):
         f = open(f"data/texts/{name}.txt", 'r', encoding="UTF-8")
@@ -60,8 +64,10 @@ class Level(Window):
             self.finish()
 
     def finish(self):
-        sys.exit(0)
-        #TODO
+        result = self.line
+        self.reset_level()
+        pygame.time.set_timer(self.timer, 0)
+        self.congrats = Congratulation(result, len(self.text), self, self.menu)
 
     def process_events(self, event):
         if event.type == self.timer:
@@ -69,11 +75,11 @@ class Level(Window):
                 self.add_prisoner()
 
     def add_prisoner(self):
-        v = 0.2
+        v = 0.15
         if self.prisoners_count < len(self.text) / 3:
             v = 0.1
         elif self.prisoners_count > 2 * len(self.text) / 3:
-            v = 0.3
+            v = 0.2
         self.prisoners.add(Prisoner(122, 390, v))
         self.prisoners_count += 1
 
@@ -83,3 +89,8 @@ class Level(Window):
             if first_prisoner is None or first_prisoner.rect.x < prisoner.rect.x:
                 first_prisoner = prisoner
         first_prisoner.kill()
+        if len(self.prisoners) == 0:
+            self.add_prisoner()
+
+    def reset_timer(self):
+        pygame.time.set_timer(self.timer, 10000)
