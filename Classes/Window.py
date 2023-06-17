@@ -24,6 +24,8 @@ class Window:
     def run(self):
         pygame.init()
         run = True
+        fps = 60
+        clock = pygame.time.Clock()
         while run:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -33,13 +35,18 @@ class Window:
                         self.click(event.pos)
                 if event.type == pygame.KEYDOWN:
                     self.keydown(event)
+                self.process_events(event)
             self.screen.fill((0, 0, 0))
             if self.background:
                 self.screen.blit(self.background, (0, 0))
             self.buttons.draw(self.screen)
             self.sprite_move()
             pygame.display.flip()
+            clock.tick(fps)
         pygame.quit()
+
+    def process_events(self, event):
+        pass
 
     def keydown(self, event):
         pass
